@@ -1,11 +1,13 @@
 const fs = require ('fs');
 const path = require('path');
-const homeHandle = require("./handler/homeHandle");
+const publicHandle =require('./handler/publicHandle')
 
 const router = (request, response) => {
     const url = request.url;
     if(url === '/'){
-        homeHandle(response);
+        publicHandle(response, 'index.html');
+    }else if(url === '/css/style.css'){
+        publicHandle(response, url);
     }
 }
 
