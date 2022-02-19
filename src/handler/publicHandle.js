@@ -19,4 +19,19 @@ const publicHandle =(response , endPoint)=> {
         }
     })
 }
-module.exports = publicHandle;
+const productHandle =(response , endPoint)=> {
+    const extension = endPoint.split('.')[1];
+    const filePath = path.join(__dirname, '..','product.json')
+    fs.readFile (filePath, (error,data)=> {
+        if(error){
+            response.writeHead(500)
+            response.end('SERVER ERROR')
+        }
+        else {
+            response.writeHead(200 , {'content-Type': contentType[extension]});
+            response.end(data);
+        }
+    })
+}
+
+module.exports ={publicHandle , productHandle};
