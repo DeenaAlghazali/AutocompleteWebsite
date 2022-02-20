@@ -11,20 +11,7 @@ const publicHandle =(response , endPoint)=> {
     fs.readFile (filePath, (error,data)=> {
         if(error){
             response.writeHead(500)
-            response.end('SERVER ERROR')
-        }
-        else {
-            response.writeHead(200 , {'content-Type': contentType[extension]});
-            response.end(data);
-        }
-    })
-}
-const productHandle =(response , endPoint)=> {
-    const extension = endPoint.split('.')[1];
-    const filePath = path.join(__dirname, '..','product.json')
-    fs.readFile (filePath, (error,data)=> {
-        if(error){
-            response.writeHead(500)
+            // publicHandle(response, '/html/500.html');
             response.end('SERVER ERROR')
         }
         else {
@@ -34,4 +21,4 @@ const productHandle =(response , endPoint)=> {
     })
 }
 
-module.exports ={publicHandle , productHandle};
+module.exports =publicHandle;
